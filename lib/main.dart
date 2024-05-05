@@ -5,6 +5,7 @@ import 'package:random_quraan/writing2.dart';
 import 'package:random_quraan/writining.dart';
 import 'package:wakelock/wakelock.dart';
 
+import 'ayas.dart';
 import 'bond.dart';
 
 void main() {
@@ -45,6 +46,7 @@ class _MyAppState extends State<MyApp> {
           ListSuras.routeName: (ctx) => ListSuras(),
           Writing.routeName: (ctx) => Writing(i),
           Writing2.routeName: (ctx) => Writing2(x),
+          ayas.routeName: (ctx) => ayas(y),
         });
   }
 }

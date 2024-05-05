@@ -12,9 +12,9 @@ class _AppDrawerrState extends State<AppDrawerr> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final eight = size.width * 0.8;
     return Drawer(
-        width: double.infinity,
+        width: eight,
         child: Container(
             height: 500,
             child: SingleChildScrollView(
@@ -42,7 +42,7 @@ class _AppDrawerrState extends State<AppDrawerr> {
                   Center(
                       child: Padding(
                           padding: EdgeInsets.fromLTRB(
-                              size.width * 0.25, 3, size.width * 0.25, 3),
+                              eight * 0.1, 3, eight * 0.1, 3),
                           child: ListTile(
                               tileColor:
                                   const Color.fromARGB(46, 158, 158, 158),
@@ -53,6 +53,7 @@ class _AppDrawerrState extends State<AppDrawerr> {
                                   child: const Text(
                                 'الرئيسية',
                                 textAlign: TextAlign.center,
+                                //    overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                   fontFamily: 'Tajawal',
                                 ),
@@ -71,7 +72,7 @@ class _AppDrawerrState extends State<AppDrawerr> {
                   Center(
                       child: Padding(
                           padding: EdgeInsets.fromLTRB(
-                              size.width * 0.25, 3, size.width * 0.25, 3),
+                              eight * 0.1, 3, eight * 0.1, 3),
                           child: ListTile(
                             tileColor: const Color.fromARGB(46, 158, 158, 158),
                             splashColor: Colors.amber,

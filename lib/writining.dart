@@ -1,9 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:random_quraan/drawer.dart';
-import 'package:random_quraan/suras.dart';
+import 'package:random_quraan/surasx.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import 'ayas.dart';
 
 class Writing extends StatefulWidget {
   static const routeName = '/Writing';
@@ -26,7 +27,8 @@ class _WritingState extends State<Writing> {
   final ScrollOffsetListener scrollOffsetListener =
       ScrollOffsetListener.create();
   ScrollController controller = ScrollController();
-
+  int x = 0;
+  int z = 0;
   @override
   void initState() {
     setState(() {
@@ -43,14 +45,24 @@ class _WritingState extends State<Writing> {
     final appbarheight = kToolbarHeight;
     final heightx = size.height - appbarheight;
     int i = allquraan.length;
+    // int x = 0;
 
+    // List<Widget> bring = [];
+    // for (x = 0; x < i; x++) {
+    //   bring.add(Text('${allquraan[x].values.first![x]}'));
+    // }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       drawer: AppDrawerr(),
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Column(children: [
-          Text('بسم الله الرحمن الرحيم'),
+          Text(
+            'بسم الله الرحمن الرحيم',
+            style: TextStyle(
+                //   fontFamily: 'Tajawal',
+                ),
+          ),
           AnimatedTextKit(
               animatedTexts: [
                 ColorizeAnimatedText('',
@@ -79,6 +91,11 @@ class _WritingState extends State<Writing> {
                         duration: Duration(seconds: 40),
                         curve: Curves.linear)
                     : null;
+// itemScrollController.scrollTo(
+//                         index: itemPositionsListener
+//                             .itemPositions.value.first.index,
+//                         duration: Duration(seconds: 40),
+//                         curve: Curves.linear);
 
                 _showstatic == true
                     ? setState(() {
@@ -90,7 +107,7 @@ class _WritingState extends State<Writing> {
         centerTitle: true,
       ),
       body: SizedBox(
-          height: heightx * 0.9,
+          height: heightx,
           child: ScrollablePositionedList.builder(
               itemScrollController: itemScrollController,
               scrollOffsetController: scrollOffsetController,
@@ -108,9 +125,14 @@ class _WritingState extends State<Writing> {
                         child: SelectableText(
                           '${allquraan[index].keys.first.toString()}',
                           style: TextStyle(
-                              fontStyle: FontStyle.italic, fontSize: 30),
+                              fontFamily: 'Tajawal',
+                              fontStyle: FontStyle.italic,
+                              fontSize: 30),
                           textAlign: TextAlign.center,
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => ayas(index)));
+                          },
                         )),
                     Center(
                         child: Padding(
@@ -131,6 +153,7 @@ class _WritingState extends State<Writing> {
                                           ],
                                           textStyle: TextStyle(
                                               fontStyle: FontStyle.italic,
+                                              fontFamily: 'Tajawal',
                                               fontSize: 30),
                                           textAlign: TextAlign.center,
                                           speed: Duration(milliseconds: 200)
@@ -141,52 +164,37 @@ class _WritingState extends State<Writing> {
 
                                     //  totalRepeatCount: 3,
                                     repeatForever: true,
-                                    onTap: () {
-                                      print(index);
-                                      launchUrl((Uri.parse(
-                                          'https://surahquran.com/aya_view.php?sora=${index + 1}&aya=${((allquraan[index + 1].values.first!.indexWhere((element) => element == (allquraan[index + 1].values.first!.first))) + 1)}')));
-                                      print(itemPositionsListener
-                                          .itemPositions.value.first.index);
+                                    onNext: (p0, p1) {
+                                      // for(x =0 ; x<(allquraan[index].values.first!.length); x++){},
+                                      // setState(() {
+                                      //   z = allquraan[index]
+                                      //       .values
+                                      //       .first!
+                                      //       .length;
+                                      // });
                                     },
-                                    //  pause: const Duration(seconds: 1),
+                                    onTap: () {
+                                      // print(index);
+                                      // launchUrl((Uri.parse(
+                                      //     'https://surahquran.com/aya_view.php?sora=${index + 1}&aya=${((allquraan[index + 1].values.first!.indexWhere((element) => element == (allquraan[index + 1].values.first!.first))) + 1)}')));
+                                      // print(itemPositionsListener
+                                      //     .itemPositions.value.first.index);
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (ctx) => ayas(index)));
+                                    },
                                   ),
-
-                                  // SelectableText(
-                                  //   '${allquraan[index].values.first!.first.toString()}',
-                                  //   style: TextStyle(
-                                  //       fontStyle: FontStyle.italic,
-                                  //       fontSize: 30),
-                                  //   textAlign: TextAlign.center,
-                                  //   onTap: () {
-
-                                  //     print(index);
-                                  //     launchUrl((Uri.parse(
-                                  //         'https://surahquran.com/aya_view.php?sora=${index + 1}&aya=${((allquraan[index + 1].values.first!.indexWhere((element) => element == (allquraan[index + 1].values.first!.first))) + 1)}')));
-                                  //     print(itemPositionsListener
-                                  //         .itemPositions.value.first.index);
-                                  //   },
-                                  // ),
-                                  // SizedBox(
-                                  //   height: heightx * 0.7,
-                                  //   child: ScrollablePositionedList.builder(
-                                  //       // itemScrollController:
-                                  //       //     itemScrollController2,
-                                  //       itemCount: allquraan[index]
-                                  //           .values
-                                  //           .first!
-                                  //           .length,
-                                  //       initialScrollIndex: widget.indx,
-                                  //       itemBuilder: (ctx, indexx) =>
                                   SelectableText(
                                     '${(allquraan[index].values.first!.toString().split(allquraan[index].values.first!.first).last)}',
                                     style: TextStyle(
                                         fontStyle: FontStyle.italic,
+                                        fontFamily: 'Tajawal',
                                         fontSize: 30),
                                     textAlign: TextAlign.center,
                                     onTap: () {
-                                      //  print(indexx);
-                                      // launchUrl((Uri.parse(
-                                      //     'https://surahquran.com/aya_view.php?sora=${itemPositionsListener.itemPositions.value.first.index}&aya=${((allquraan[itemPositionsListener.itemPositions.value.first.index].values.first!.indexWhere((element) => element == (allquraan[widget.indx + 1].values.first!.first))) + 1)}')));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (ctx) => ayas(index)));
                                     },
                                   ),
                                 ])),
@@ -200,9 +208,13 @@ class _WritingState extends State<Writing> {
               _showstatic = !_showstatic!;
             });
             if (_showstatic == false) {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (ctx) => Writing(
-                      itemPositionsListener.itemPositions.value.first.index)));
+              itemScrollController.scrollTo(
+                  index: itemPositionsListener.itemPositions.value.first.index,
+                  duration: Duration(days: 10000),
+                  curve: Curves.linear);
+              // Navigator.of(context).pushReplacement(MaterialPageRoute(
+              //     builder: (ctx) => Writing(
+              //         itemPositionsListener.itemPositions.value.first.index)));
             }
 
             print(itemPositionsListener.itemPositions.value.first.index);

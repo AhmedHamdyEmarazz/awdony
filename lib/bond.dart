@@ -139,6 +139,8 @@ class _BondState extends State<Bond> {
   bool showpress = false;
   bool showtext = false;
   bool showstatic = false;
+  bool _showstatic = false;
+
   int _counter = 0;
   int _counterx = 0;
   bool jump = false;
@@ -2261,6 +2263,7 @@ class _BondState extends State<Bond> {
 
   currentAya(String currentaya, ScrollController controller, suranamee) {
     print(fatiha!.first.toString().split('(').last.split(')').first);
+
     // print(suranamee.toString().split('-').first);
     // print(currentaya);
     Wakelock.enable();
@@ -2348,64 +2351,73 @@ class _BondState extends State<Bond> {
     //   print(_counterx);
     // }
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        drawer: AppDrawerr(),
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text('بسم الله الرحمن الرحيم'),
-          centerTitle: true,
+      resizeToAvoidBottomInset: false,
+      drawer: AppDrawerr(),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text(
+          'بسم الله الرحمن الرحيم',
+          style: TextStyle(
+              // fontFamily: 'Tajawal',
+              ),
         ),
-        body: SizedBox(
-            height: heightx,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: appbarheight * 0.25,
-                  ),
-                  Text(
-                    suraname!,
-                    //   Bond().suraname,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
+        centerTitle: true,
+      ),
+      body: SizedBox(
+          height: heightx,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(
+                  height: appbarheight * 0.25,
+                ),
+                Text(
+                  suraname!,
+                  //   Bond().suraname,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium, //                  fontFamily: 'Tajawal',
+                ),
 
-                  SizedBox(
-                    height: appbarheight * 0.1,
-                  ),
-                  AnimatedTextKit(
-                      animatedTexts: [
-                        ColorizeAnimatedText(
-                          aya == ''
-                              ? ''
-                              : 'انقر هنا او على النص لتنتقل الى الشرح',
-                          textStyle: TextStyle(fontSize: 14),
-                          colors: [
-                            Colors.lightBlueAccent,
-                            const Color.fromARGB(255, 3, 64, 92)
-                          ],
-                          //  speed: Duration(seconds: 2),
+                SizedBox(
+                  height: appbarheight * 0.1,
+                ),
+                AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText(
+                        aya == ''
+                            ? ''
+                            : 'انقر هنا او على النص لتنتقل الى الشرح',
+                        textStyle: TextStyle(fontSize: 14),
+                        colors: [
+                          Colors.lightBlueAccent,
+                          const Color.fromARGB(255, 3, 64, 92)
+                        ],
+                        //  speed: Duration(seconds: 2),
 
-                          //   scalingFactor: 0.1,
-                          //   duration: Duration(milliseconds: 2000)
-                        )
-                      ],
-                      //  totalRepeatCount: 3,
+                        //   scalingFactor: 0.1,
+                        //   duration: Duration(milliseconds: 2000)
+                      )
+                    ],
+                    //  totalRepeatCount: 3,
 
-                      repeatForever: true,
-                      onTap: () {
-                        setState(() {
-                          showpress = true;
-                          switchh = false;
-                        });
-                        //   print('holly');
-                        launchUrl((Uri.parse(aya_view!)));
-                      },
-                      //  pause: const Duration(seconds: 1),
-                      onNext: (p0, p1) {
-                        setState(() {
-                          showstatic = false;
-                        });
+                    repeatForever: true,
+                    onTap: () {
+                      setState(() {
+                        showpress = true;
+                        switchh = false;
+                      });
+                      //   print('holly');
+                      launchUrl((Uri.parse(aya_view!)));
+                    },
+                    //  pause: const Duration(seconds: 1),
+                    onNext: (p0, p1) {
+                      setState(() {
+                        // showstatic = false;
+                        showpress = false;
+                      });
+                      if (_showstatic) {
                         var end = Platform.isAndroid
                             ? controller.position.maxScrollExtent
                             : controller.position.maxScrollExtent;
@@ -2429,155 +2441,179 @@ class _BondState extends State<Bond> {
                         } else {
                           if (aya != '') {
                             controller.jumpTo(0);
-                            currentAya(aya!, controller, suraname);
-                            // Future.delayed(const Duration(seconds: 8), (() {
-                            //   controller.jumpTo(0);
-                            //   currentAya(aya!, controller, suraname);
-                            //   print(aya);
-                            // }));
-                            //       currentAya(aya!, controller, suraname);
+                            showstatic
+                                ? currentAya(aya!, controller, suraname)
+                                : null;
                           }
-                          // if (aya != '') {
+                          // Future.delayed(const Duration(seconds: 8), (() {
+                          //   controller.jumpTo(0);
                           //   currentAya(aya!, controller, suraname);
-                          // }
-                          // Future.delayed(const Duration(seconds: 6), (() {
-                          //   controller.jumpTo(0);
+                          //   print(aya);
                           // }));
-
-                          // if (aya != '') {
-                          //   Future.delayed(const Duration(seconds: 8), (() {
-                          //     currentAya(aya!, controller, suraname);
-                          //     print(aya);
-                          //   }));
-                          //   //       currentAya(aya!, controller, suraname);
-                          // }
-                          // controller.animateTo(size.height * 3.3,
-                          //     duration: Duration(seconds: 180), curve: Curves.linear);
-                          // Future.delayed(const Duration(seconds: 7), (() {
-                          //   controller.jumpTo(0);
-                          // }));
-
-                          setState(() {
-                            scrollend = true;
-                          });
-                          // controller.jumpTo(0);
-                          // print(
-                          //   'salaaaaaaaaaaaaaam',
-                          // );
-                          // if (aya != '') {
-                          //   Future.delayed(const Duration(seconds: 8), (() {
-                          //     currentAya(aya!, controller, suraname);
-                          //     print(aya);
-                          //   }));
-                          // }
+                          //       currentAya(aya!, controller, suraname);
                         }
-                      }),
-                  // Text(aya == '' ? '' : 'انقر على النص لتنتقل الى الشرح',
-                  //     style: const TextStyle(fontSize: 10)),
-                  Text(
-                    aya! == ''
-                        ? ''
-                        : '(${(aya!.split('(').last).toString().split(')').first})',
-                    //   Bond().suraname,
-                    style: TextStyle(fontSize: 22),
-                  ),
-                  SizedBox(
-                      height: heightx * 0.45,
-                      child: Center(
-                          child: Card(
-                              elevation: 20,
-                              shadowColor: showpress ? Colors.amber : null,
-                              child: SingleChildScrollView(
-                                  //reverse: true,
-                                  controller: controller,
-                                  padding:
-                                      const EdgeInsets.fromLTRB(15, 3, 10, 3),
-                                  child: SelectableText(
-                                    aya!.toString().split('(').first,
-                                    //   'vbncghcghjfchfxhgxdgxdgdxgxdgdxgxdgxdgdxgdxgxdgdx≈c≈ƒƒßfßfsfzsfserestdryfcghgvjhhbkjnljknljkhvjcghxfgzdfzsdzsdzsdzsdzsfxdgcfghvjbhkjkljnklklkj;ko;pkojkljkhvjcgxdfzsdaea`wq`wazedfxgchjvbjbknknkjvcdxewerdtyhgbjkjnjnkoivgbjmnnbhcfxtexrsdfghuyiokjjvgcfgxdrsznsmzsdfx',
+                        // if (aya != '') {
+                        //   currentAya(aya!, controller, suraname);
+                        // }
+                        // Future.delayed(const Duration(seconds: 6), (() {
+                        //   controller.jumpTo(0);
+                        // }));
 
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 40),
+                        // if (aya != '') {
+                        //   Future.delayed(const Duration(seconds: 8), (() {
+                        //     currentAya(aya!, controller, suraname);
+                        //     print(aya);
+                        //   }));
+                        //   //       currentAya(aya!, controller, suraname);
+                        // }
+                        // controller.animateTo(size.height * 3.3,
+                        //     duration: Duration(seconds: 180), curve: Curves.linear);
+                        // Future.delayed(const Duration(seconds: 7), (() {
+                        //   controller.jumpTo(0);
+                        // }));
+
+                        setState(() {
+                          scrollend = true;
+                        });
+                        // controller.jumpTo(0);
+                        // print(
+                        //   'salaaaaaaaaaaaaaam',
+                        // );
+                        // if (aya != '') {
+                        //   Future.delayed(const Duration(seconds: 8), (() {
+                        //     currentAya(aya!, controller, suraname);
+                        //     print(aya);
+                        //   }));
+                        // }
+                      }
+                    }),
+                // Text(aya == '' ? '' : 'انقر على النص لتنتقل الى الشرح',
+                //     style: const TextStyle(fontSize: 10)),
+                Text(
+                  aya! == ''
+                      ? ''
+                      : '(${(aya!.split('(').last).toString().split(')').first})',
+                  //   Bond().suraname,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontFamily: 'Tajawal',
+                  ),
+                ),
+                SizedBox(
+                    height: heightx * 0.45,
+                    child: Center(
+                        child: Card(
+                            elevation: 20,
+                            shadowColor: showpress ? Colors.amber : null,
+                            child: SingleChildScrollView(
+                                //reverse: true,
+                                controller: controller,
+                                padding:
+                                    const EdgeInsets.fromLTRB(15, 3, 10, 3),
+                                child: SelectableText(
+                                  aya!.toString().split('(').first,
+                                  //   'vbncghcghjfchfxhgxdgxdgdxgxdgdxgxdgxdgdxgdxgxdgdx≈c≈ƒƒßfßfsfzsfserestdryfcghgvjhhbkjnljknljkhvjcghxfgzdfzsdzsdzsdzsdzsfxdgcfghvjbhkjkljnklklkj;ko;pkojkljkhvjcgxdfzsdaea`wq`wazedfxgchjvbjbknknkjvcdxewerdtyhgbjkjnjnkoivgbjmnnbhcfxtexrsdfghuyiokjjvgcfgxdrsznsmzsdfx',
+
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    fontFamily: 'Tajawal',
+                                  ),
 //  Theme.of(context)
 //                                         .textTheme
 //                                         .headlineMedium,
-                                    onTap: () {
-                                      setState(() {
-                                        showpress = true;
-                                      });
-                                      //    print('holly');
-                                      launchUrl((Uri.parse(aya_view!)));
-                                    },
-                                  ))))),
+                                  onTap: () {
+                                    setState(() {
+                                      showpress = true;
+                                    });
+                                    //    print('holly');
+                                    launchUrl((Uri.parse(aya_view!)));
+                                  },
+                                ))))),
 
-                  Container(
-                      //  color: Colors.purpleAccent,
-                      alignment: Alignment.center,
-                      height: appbarheight * 0.5,
+                Container(
+                    //  color: Colors.purpleAccent,
+                    alignment: Alignment.center,
+                    height: appbarheight * 0.5,
 
-                      //  width: double.infinity,
-                      child: Text(
-                        aya! == '' ? 'انقر لاظهار اية' : 'انقر لتغيير الاية',
-                        //   Bond().suraname,
-                        style: TextStyle(fontSize: 15),
-                      )),
-                  // Container(
-                  //     //    color: Colors.purpleAccent,
-                  //     alignment: Alignment.center,
-                  //     height: appbarheight * 0.5,
-                  //     //   width: double.infinity,
-                  //     child:
+                    //  width: double.infinity,
+                    child: Text(
+                      aya! == '' ? 'انقر لاظهار اية' : 'انقر لتغيير الاية',
+                      //   Bond().suraname,
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    )),
+                // Container(
+                //     //    color: Colors.purpleAccent,
+                //     alignment: Alignment.center,
+                //     height: appbarheight * 0.5,
+                //     //   width: double.infinity,
+                //     child:
 
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        showstatic = true;
-                      });
-                      incrementCounterx();
-                    },
-                    icon: Icon(
-                      Icons.arrow_drop_down_circle,
-                      size: appbarheight,
-                      color: Colors.lightBlue,
-                    ),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      _showstatic = true;
+                    });
+                    incrementCounterx();
+                  },
+                  icon: Icon(
+                    Icons.arrow_drop_down_circle,
+                    size: appbarheight,
+                    color: Colors.lightBlue,
+                  ),
 //                )
-                  ),
+                ),
 
-                  SizedBox(
-                    height: appbarheight * 0.1,
-                  ),
-                  Text(
-                    _counter.toString(),
-                    //   Bond().suraname,
-                    style: TextStyle(fontSize: 15),
-                  ),
-                ],
-              ),
-              //   ),
-              // floatingActionButton: FloatingActionButton(
-              //     onPressed: () {
-              //       setState(() {
-              //         showstatic = true;
-              //       });
-              //       incrementCounterx();
-              //     },
-              //     //  isExtended: true,
-              //     // tooltip: 'اية اخرى',
-              //     child: Column(children: [
-              //       Container(
-              //           alignment: Alignment.center,
-              //           width: double.infinity,
-              //           child: Text(
-              //             aya! == '' ? 'انقر لاظهار اية' : 'انقر لتغيير الاية',
-              //             //   Bond().suraname,
-              //             style: TextStyle(fontSize: 8),
-              //           )),
-              //       Container(
-              //         alignment: Alignment.center,
-              //         width: double.infinity,
-              //         child: Icon(Icons.arrow_drop_down_circle),
-              //       )
-              //     ])),
-            )));
+                SizedBox(
+                  height: appbarheight * 0.1,
+                ),
+                Text(
+                  _counter.toString(),
+                  //   Bond().suraname,
+                  style: TextStyle(fontSize: 15),
+                ),
+              ],
+            ),
+            //   ),
+            // floatingActionButton: FloatingActionButton(
+            //     onPressed: () {
+            //       setState(() {
+            //         showstatic = true;
+            //       });
+            //       incrementCounterx();
+            //     },
+            //     //  isExtended: true,
+            //     // tooltip: 'اية اخرى',
+            //     child: Column(children: [
+            //       Container(
+            //           alignment: Alignment.center,
+            //           width: double.infinity,
+            //           child: Text(
+            //             aya! == '' ? 'انقر لاظهار اية' : 'انقر لتغيير الاية',
+            //             //   Bond().suraname,
+            //             style: TextStyle(fontSize: 8),
+            //           )),
+            //       Container(
+            //         alignment: Alignment.center,
+            //         width: double.infinity,
+            //         child: Icon(Icons.arrow_drop_down_circle),
+            //       )
+            //     ])),
+          )),
+      floatingActionButton: FloatingActionButton(
+          // enableFeedback: aya! == '' ? true : false,
+          onPressed: () {
+            if (aya! != '') {
+              setState(() {
+                showstatic = !showstatic;
+              });
+              showstatic ? currentAya(aya!, controller, suraname) : null;
+            }
+          },
+          child:
+              showstatic ? Icon(Icons.pause) : Icon(Icons.play_arrow_rounded)),
+    );
   }
 }

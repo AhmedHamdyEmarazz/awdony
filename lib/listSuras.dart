@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_quraan/drawer.dart';
-import 'package:random_quraan/suras.dart';
+import 'package:random_quraan/surasx.dart';
 import 'package:random_quraan/writining.dart';
 
 class ListSuras extends StatefulWidget {
@@ -65,7 +65,10 @@ class _ListSurasState extends State<ListSuras> {
                                           trailing: Text(
                                             '${allquraan[index].keys.first}',
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 12),
+                                            style: TextStyle(
+                                              fontSize: 12,
+                                              fontFamily: 'Tajawal',
+                                            ),
                                           ),
                                           onTap: () {
                                             Future.delayed(

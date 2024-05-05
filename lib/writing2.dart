@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:random_quraan/drawer.dart';
-import 'package:random_quraan/suras.dart';
+import 'package:random_quraan/surasx.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class Writing2 extends StatefulWidget {
