@@ -3,10 +3,14 @@ import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wakelock/wakelock.dart';
 
+import 'drawer.dart';
 import 'suras.dart';
 
 class Bond extends StatefulWidget {
+  static const routeName = '/bond';
+
   const Bond({super.key});
 
   @override
@@ -2259,6 +2263,7 @@ class _BondState extends State<Bond> {
     print(fatiha!.first.toString().split('(').last.split(')').first);
     // print(suranamee.toString().split('-').first);
     // print(currentaya);
+    Wakelock.enable();
     setState(() {
       scrollend = false;
       _counterx++;
@@ -2338,12 +2343,13 @@ class _BondState extends State<Bond> {
     final appbarheight = kToolbarHeight;
     final heightx = size.height - appbarheight;
     ScrollController controller = ScrollController();
-    ;
+
     // while (_counterx < 100000) {
     //   print(_counterx);
     // }
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        drawer: AppDrawerr(),
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text('بسم الله الرحمن الرحيم'),
@@ -2358,38 +2364,12 @@ class _BondState extends State<Bond> {
                   SizedBox(
                     height: appbarheight * 0.25,
                   ),
-                  showstatic
-                      ? Text(
-                          suraname!,
-                          //   Bond().suraname,
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        )
-                      : AnimatedTextKit(
-                          animatedTexts: [
-                              TypewriterAnimatedText(
-                                suraname!,
-                                textStyle:
-                                    Theme.of(context).textTheme.headlineMedium,
-                                //    speed: const Duration(milliseconds: 500),
-                                //  speed:,
-                              )
-                            ],
-                          //  totalRepeatCount: 3,
-                          repeatForever: true,
+                  Text(
+                    suraname!,
+                    //   Bond().suraname,
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
 
-                          //  pause: const Duration(seconds: 1),
-                          onNext: (p0, p1) {
-                            setState(() {
-                              showpress = false;
-                              showtext = true;
-                            });
-                          }),
-
-                  // Text(
-                  //   suraname!,
-                  //   //   Bond().suraname,
-                  //   style: Theme.of(context).textTheme.headlineMedium,
-                  // ),
                   SizedBox(
                     height: appbarheight * 0.1,
                   ),

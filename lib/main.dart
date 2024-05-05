@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:random_quraan/listSuras.dart';
+import 'package:random_quraan/writing2.dart';
+import 'package:random_quraan/writining.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'bond.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Wakelock.enable();
   runApp(const MyApp());
 }
 
@@ -23,14 +29,23 @@ class _MyAppState extends State<MyApp> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    var i;
+    var x;
+    var y;
+
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Bond(),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const Bond(),
+        routes: {
+          Bond.routeName: (ctx) => Bond(),
+          ListSuras.routeName: (ctx) => ListSuras(),
+          Writing.routeName: (ctx) => Writing(i),
+          Writing2.routeName: (ctx) => Writing2(x),
+        });
   }
 }
 
