@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:random_quraan/bond.dart';
 import 'package:random_quraan/listSuras.dart';
@@ -91,6 +92,59 @@ class _AppDrawerrState extends State<AppDrawerr> {
                               }));
                             },
                           ))),
+                  SizedBox(height: size.height * 0.15),
+                  Center(
+                      child: AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText('اللهم اغفر وارحم وعافِ ابي عبدك',
+                          colors: [
+                            Colors.lightBlueAccent,
+                            const Color.fromARGB(255, 3, 64, 92)
+                          ],
+                          textStyle: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'Tajawal',
+                              fontSize: 13),
+                          textAlign: TextAlign.center,
+                          speed: Duration(milliseconds: 200))
+                    ],
+                    repeatForever: true,
+                  )),
+                  Center(
+                      child: AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText('"حمدي عماره"',
+                          colors: [
+                            Colors.lightBlueAccent,
+                            const Color.fromARGB(255, 3, 64, 92)
+                          ],
+                          textStyle: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'Tajawal',
+                              fontSize: 13),
+                          textAlign: TextAlign.center,
+                          speed: Duration(milliseconds: 200))
+                    ],
+                    repeatForever: true,
+                  )),
+                  Center(
+                      child: AnimatedTextKit(
+                    animatedTexts: [
+                      ColorizeAnimatedText(
+                          ' واجعل الحسنات التي قدمها في حياته صدقة جارية له في الآخرة. اللهم اجعلها من الصدقات الباقية التي تنفعه وتكرم ذكره وترفع درجاته في جنتك. اللهم اجعل هذه الصدقة مستودعة له عندك، واجعلها شفيعة له يوم لا ينفع مالٌ ولا بنون إلا من أتى الله بقلبٍ سليم',
+                          colors: [
+                            Colors.lightBlueAccent,
+                            const Color.fromARGB(255, 3, 64, 92)
+                          ],
+                          textStyle: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontFamily: 'Tajawal',
+                              fontSize: 13),
+                          textAlign: TextAlign.center,
+                          speed: Duration(milliseconds: 200))
+                    ],
+                    repeatForever: true,
+                  )),
                 ],
               ),
             )));
