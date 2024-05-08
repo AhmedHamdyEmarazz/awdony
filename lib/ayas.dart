@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:random_quraan/drawer.dart';
@@ -14,7 +16,7 @@ class ayas extends StatefulWidget {
 }
 
 class _ayasState extends State<ayas> {
-  bool? _showstatic = false;
+  bool _showstatic = false;
   int next = 0;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemScrollController itemScrollController2 = ItemScrollController();
@@ -33,7 +35,6 @@ class _ayasState extends State<ayas> {
   void initState() {
     setState(() {
       _showstatic = false;
-      next = widget.indx;
     });
     super.initState();
   }
@@ -60,37 +61,75 @@ class _ayasState extends State<ayas> {
           ),
           AnimatedTextKit(
               animatedTexts: [
-                ColorizeAnimatedText('',
-                    colors: [
-                      Colors.lightBlueAccent,
-                      const Color.fromARGB(255, 3, 64, 92)
-                    ],
-                    textStyle: TextStyle(fontSize: 5),
-                    speed: Duration(milliseconds: 200)
-                    //    speed: const Duration(milliseconds: 500),
-                    //  speed:,
-                    )
+                ColorizeAnimatedText(
+                  '',
+                  colors: [
+                    Colors.lightBlueAccent,
+                    const Color.fromARGB(255, 3, 64, 92)
+                  ],
+                  textStyle: TextStyle(fontSize: 5),
+                  speed: Duration(milliseconds: 200),
+                  //    speed: const Duration(milliseconds: 500),
+                  //  speed:,
+                )
               ],
 
               //  totalRepeatCount: 3,
               repeatForever: true,
-
-              //  pause: const Duration(seconds: 1),
+              pause: next == 0 ? Duration(seconds: 1) : Duration(seconds: 15),
               onNext: (p0, p1) {
-                //   print(next);
-                //     print(itemPositionsListener.itemPositions.value.first.index);
+                // _showstatic == true
+                //     ? itemScrollController.scrollTo(
+                //         index: i,
+                //         duration: Duration(seconds: 40),
+                //         curve: Curves.linear)
+                //     : null;
+                // _showstatic == true
+                //     ? setState(() {
+                //         next = next + 1;
+                //       })
+                //     : null;
+                // print(itemPositionsListener.itemPositions.value.last.index);
+                // print(i);
+                print(next);
 
-                _showstatic == true
-                    ? itemScrollController.scrollTo(
+                if (_showstatic) {
+                  // next >= 2
+                  //     ? setState(() {
+                  //         next = next - 1;
+                  //       })
+                  //     : null;
+                  var end = Platform.isAndroid
+                      ? itemPositionsListener.itemPositions.value.last.index
+                      : itemPositionsListener.itemPositions.value.last.index;
+                  if (end != i - 1) {
+                    itemScrollController.scrollTo(
                         index: i,
                         duration: Duration(seconds: 40),
-                        curve: Curves.linear)
-                    : null;
-                _showstatic == true
-                    ? setState(() {
+                        curve: Curves.linear);
+                    if (next != 0) {
+                      Future.delayed(const Duration(seconds: 15), (() {
+                        itemScrollController.scrollTo(
+                            index: i,
+                            duration: Duration(seconds: 40),
+                            curve: Curves.linear);
+                      }));
+                    }
+                  } else {
+                    Future.delayed(const Duration(seconds: 15), (() {
+                      setState(() {
                         next = next + 1;
-                      })
-                    : null;
+                      });
+                    }));
+                    Future.delayed(const Duration(seconds: 15), (() {
+                      itemScrollController.jumpTo(index: 0);
+                      // itemScrollController.scrollTo(
+                      //     index: 0,
+                      //     duration: Duration(milliseconds: 200),
+                      //     curve: Curves.linear);
+                    }));
+                  }
+                }
               }),
         ]),
         centerTitle: true,
@@ -228,9 +267,10 @@ class _ayasState extends State<ayas> {
                         )
                       ])))),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: ThemeData().secondaryHeaderColor.withOpacity(0.1),
           onPressed: () {
             setState(() {
-              _showstatic = !_showstatic!;
+              _showstatic = !_showstatic;
             });
             if (_showstatic == false) {
               itemScrollController.scrollTo(
@@ -245,9 +285,28 @@ class _ayasState extends State<ayas> {
 
             print(itemPositionsListener.itemPositions.value.first.index);
           },
-          child: _showstatic!
-              ? Icon(Icons.pause)
-              : Icon(Icons.play_arrow_rounded)),
+          child: _showstatic
+              ? Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(next > 0 ? 'repeated' : '0'),
+                    Icon(Icons.pause)
+                  ],
+                )
+              : Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(next > 0 ? 'repeated' : '0'),
+                    Icon(Icons.play_arrow_rounded),
+                  ],
+                )
+
+          // ? Icon(Icons.pause)
+          // : Icon(Icons.play_arrow_rounded)
+
+          ),
     );
   }
 }

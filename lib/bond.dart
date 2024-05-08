@@ -2612,6 +2612,7 @@ class _BondState extends State<Bond> {
               showstatic ? currentAya(aya!, controller, suraname) : null;
             }
           },
+          tooltip: ' انتقال تلقائي بالترتيب',
           child:
               showstatic ? Icon(Icons.pause) : Icon(Icons.play_arrow_rounded)),
     );

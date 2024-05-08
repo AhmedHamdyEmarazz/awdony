@@ -203,6 +203,7 @@ class _WritingState extends State<Writing> {
                             )))
                   ]))),
       floatingActionButton: FloatingActionButton(
+          backgroundColor: ThemeData().secondaryHeaderColor.withOpacity(0.1),
           onPressed: () {
             setState(() {
               _showstatic = !_showstatic!;

@@ -98,8 +98,10 @@ class _AppDrawerrState extends State<AppDrawerr> {
                     animatedTexts: [
                       ColorizeAnimatedText('اللهم اغفر وارحم وعافِ ابي عبدك',
                           colors: [
-                            Colors.lightBlueAccent,
-                            const Color.fromARGB(255, 3, 64, 92)
+                            Color.fromARGB(255, 129, 107, 1),
+                            Color.fromARGB(255, 98, 82, 0),
+
+                            //   const Color.fromARGB(255, 3, 64, 92)
                           ],
                           textStyle: TextStyle(
                               fontStyle: FontStyle.italic,
@@ -116,7 +118,7 @@ class _AppDrawerrState extends State<AppDrawerr> {
                       ColorizeAnimatedText('"حمدي عماره"',
                           colors: [
                             Colors.lightBlueAccent,
-                            const Color.fromARGB(255, 3, 64, 92)
+                            Color.fromARGB(255, 9, 118, 168)
                           ],
                           textStyle: TextStyle(
                               fontStyle: FontStyle.italic,
@@ -133,8 +135,10 @@ class _AppDrawerrState extends State<AppDrawerr> {
                       ColorizeAnimatedText(
                           ' واجعل الحسنات التي قدمها في حياته صدقة جارية له في الآخرة. اللهم اجعلها من الصدقات الباقية التي تنفعه وتكرم ذكره وترفع درجاته في جنتك. اللهم اجعل هذه الصدقة مستودعة له عندك، واجعلها شفيعة له يوم لا ينفع مالٌ ولا بنون إلا من أتى الله بقلبٍ سليم',
                           colors: [
-                            Colors.lightBlueAccent,
-                            const Color.fromARGB(255, 3, 64, 92)
+                            Color.fromARGB(255, 129, 107, 1),
+                            Color.fromARGB(255, 98, 82, 0),
+
+                            //     const Color.fromARGB(255, 3, 64, 92)
                           ],
                           textStyle: TextStyle(
                               fontStyle: FontStyle.italic,
