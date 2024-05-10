@@ -2335,8 +2335,9 @@ class _BondState extends State<Bond> {
     if (aya == 'مِنَ الْجِنَّةِ وَالنَّاسِ(6)') {
       //  var nextsuraindex = allquraan[currentMapIndex + 1].keys;
       //   print('the end');
-
-      incrementCounterx();
+      Future.delayed(const Duration(seconds: 7), (() {
+        incrementCounterx();
+      }));
     }
   }
 
@@ -2532,7 +2533,7 @@ class _BondState extends State<Bond> {
                     ? AnimatedTextKit(
                         animatedTexts: [
                             ColorizeAnimatedText(
-                              '<-------->',
+                              '<------------->',
                               textStyle: TextStyle(fontSize: 14),
                               colors: [
                                 Colors.lightBlueAccent,
