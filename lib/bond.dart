@@ -2394,102 +2394,56 @@ class _BondState extends State<Bond> {
                           Colors.lightBlueAccent,
                           const Color.fromARGB(255, 3, 64, 92)
                         ],
-                        //  speed: Duration(seconds: 2),
-
-                        //   scalingFactor: 0.1,
-                        //   duration: Duration(milliseconds: 2000)
                       )
                     ],
-                    //  totalRepeatCount: 3,
-
                     repeatForever: true,
                     onTap: () {
                       setState(() {
                         showpress = true;
                         switchh = false;
                       });
-                      //   print('holly');
                       launchUrl((Uri.parse(aya_view!)));
                     },
-                    //  pause: const Duration(seconds: 1),
                     onNext: (p0, p1) {
-                      setState(() {
-                        // showstatic = false;
-                        showpress = false;
-                      });
-                      if (_showstatic) {
-                        var end = Platform.isAndroid
-                            ? controller.position.maxScrollExtent
-                            : controller.position.maxScrollExtent;
-                        //-300;
-                        if (end != controller.position.pixels) {
-                          //   controller.jumpTo(0);
-                          Platform.isAndroid
-                              ? controller.animateTo(heightx * 1000,
-                                  duration: Duration(seconds: 20000),
-                                  curve: Curves.linear)
-                              : controller.animateTo(
-                                  controller.position.maxScrollExtent + 300,
-                                  duration: Duration(seconds: 33),
-                                  curve: Curves.linear);
-                          if (Platform.isIOS &&
-                              controller.position.maxScrollExtent <=
-                                  controller.position.pixels) {
-                            controller.jumpTo(0);
-                            currentAya(aya!, controller, suraname);
-                          }
-                        } else {
-                          if (aya != '') {
-                            controller.jumpTo(0);
-                            showstatic
-                                ? currentAya(aya!, controller, suraname)
-                                : null;
-                          }
-                          // Future.delayed(const Duration(seconds: 8), (() {
-                          //   controller.jumpTo(0);
-                          //   currentAya(aya!, controller, suraname);
-                          //   print(aya);
-                          // }));
-                          //       currentAya(aya!, controller, suraname);
-                        }
-                        // if (aya != '') {
-                        //   currentAya(aya!, controller, suraname);
-                        // }
-                        // Future.delayed(const Duration(seconds: 6), (() {
-                        //   controller.jumpTo(0);
-                        // }));
-
-                        // if (aya != '') {
-                        //   Future.delayed(const Duration(seconds: 8), (() {
-                        //     currentAya(aya!, controller, suraname);
-                        //     print(aya);
-                        //   }));
-                        //   //       currentAya(aya!, controller, suraname);
-                        // }
-                        // controller.animateTo(size.height * 3.3,
-                        //     duration: Duration(seconds: 180), curve: Curves.linear);
-                        // Future.delayed(const Duration(seconds: 7), (() {
-                        //   controller.jumpTo(0);
-                        // }));
-
-                        setState(() {
-                          scrollend = true;
-                        });
-                        // controller.jumpTo(0);
-                        // print(
-                        //   'salaaaaaaaaaaaaaam',
-                        // );
-                        // if (aya != '') {
-                        //   Future.delayed(const Duration(seconds: 8), (() {
-                        //     currentAya(aya!, controller, suraname);
-                        //     print(aya);
-                        //   }));
-                        // }
-                      }
+                      // setState(() {
+                      //   showpress = false;
+                      // });
+                      // if (_showstatic) {
+                      //   var end = Platform.isAndroid
+                      //       ? controller.position.maxScrollExtent
+                      //       : controller.position.maxScrollExtent;
+                      //   if (end != controller.position.pixels) {
+                      //     Platform.isAndroid
+                      //         ? controller.animateTo(heightx * 1000,
+                      //             duration: Duration(seconds: 20000),
+                      //             curve: Curves.linear)
+                      //         : controller.animateTo(
+                      //             controller.position.maxScrollExtent + 300,
+                      //             duration: Duration(seconds: 33),
+                      //             curve: Curves.linear);
+                      //     if (Platform.isIOS &&
+                      //         controller.position.maxScrollExtent <=
+                      //             controller.position.pixels) {
+                      //       controller.jumpTo(0);
+                      //       currentAya(aya!, controller, suraname);
+                      //     }
+                      //   } else {
+                      //     if (aya != '') {
+                      //       controller.jumpTo(0);
+                      //       showstatic
+                      //           ? currentAya(aya!, controller, suraname)
+                      //           : null;
+                      //     }
+                      //   }
+                      //   setState(() {
+                      //     scrollend = true;
+                      //   });
+                      // }
                     }),
                 // Text(aya == '' ? '' : 'انقر على النص لتنتقل الى الشرح',
                 //     style: const TextStyle(fontSize: 10)),
                 Text(
+                  //
                   aya! == ''
                       ? ''
                       : '(${(aya!.split('(').last).toString().split(')').first})',
@@ -2574,6 +2528,68 @@ class _BondState extends State<Bond> {
                   //   Bond().suraname,
                   style: TextStyle(fontSize: 15),
                 ),
+                _counter > 0
+                    ? AnimatedTextKit(
+                        animatedTexts: [
+                            ColorizeAnimatedText(
+                              '<-------->',
+                              textStyle: TextStyle(fontSize: 14),
+                              colors: [
+                                Colors.lightBlueAccent,
+                                const Color.fromARGB(255, 3, 64, 92)
+                              ],
+                            )
+                          ],
+                        repeatForever: true,
+                        onTap: () {
+                          setState(() {
+                            showpress = true;
+                            switchh = false;
+                          });
+                          launchUrl((Uri.parse(aya_view!)));
+                        },
+                        //  pause: const Duration(seconds: 1),
+                        onNext: (p0, p1) {
+                          setState(() {
+                            // showstatic = false;
+                            showpress = false;
+                          });
+                          if (_showstatic) {
+                            var end = Platform.isAndroid
+                                ? controller.position.maxScrollExtent
+                                : controller.position.maxScrollExtent;
+                            //-300;
+                            if (end != controller.position.pixels) {
+                              //   controller.jumpTo(0);
+                              Platform.isAndroid
+                                  ? controller.animateTo(heightx * 1000,
+                                      duration: Duration(seconds: 20000),
+                                      curve: Curves.linear)
+                                  : controller.animateTo(
+                                      controller.position.maxScrollExtent + 300,
+                                      duration: Duration(seconds: 33),
+                                      curve: Curves.linear);
+                              if (Platform.isIOS &&
+                                  controller.position.maxScrollExtent <=
+                                      controller.position.pixels) {
+                                controller.jumpTo(0);
+                                currentAya(aya!, controller, suraname);
+                              }
+                            } else {
+                              if (aya != '') {
+                                controller.jumpTo(0);
+                                showstatic
+                                    ? currentAya(aya!, controller, suraname)
+                                    : null;
+                              }
+                            }
+
+                            setState(() {
+                              scrollend = true;
+                            });
+                          }
+                        })
+                    : SizedBox(),
               ],
             ),
             //   ),
