@@ -2574,7 +2574,9 @@ class _BondState extends State<Bond> {
                                   controller.position.maxScrollExtent <=
                                       controller.position.pixels) {
                                 controller.jumpTo(0);
-                                currentAya(aya!, controller, suraname);
+                                showstatic
+                                    ? currentAya(aya!, controller, suraname)
+                                    : null;
                               }
                             } else {
                               if (aya != '') {
