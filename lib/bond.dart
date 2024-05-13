@@ -3652,10 +3652,7 @@ class _BondState extends State<Bond> {
                                   controller.position.maxScrollExtent + 100,
                                   duration: Duration(seconds: 33),
                                   curve: Curves.linear)
-                              : controller.animateTo(
-                                  controller.position.maxScrollExtent + 0,
-                                  duration: Duration(seconds: 33),
-                                  curve: Curves.linear);
+                              : null;
                         },
                       )
                     : SizedBox(),
