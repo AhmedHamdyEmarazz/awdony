@@ -3598,7 +3598,7 @@ class _BondState extends State<Bond> {
                     height: heightx * 0.45,
                     child: Center(
                         child: GestureDetector(
-                            onHorizontalDragUpdate: (details) {
+                            onHorizontalDragStart: (details) {
                               setState(() {
                                 swipe = true;
                               });
