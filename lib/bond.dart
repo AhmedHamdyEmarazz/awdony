@@ -3598,7 +3598,7 @@ class _BondState extends State<Bond> {
                     height: heightx * 0.45,
                     child: Center(
                         child: GestureDetector(
-                            onHorizontalDragStart: (details) {
+                            onHorizontalDragUpdate: (details) {
                               setState(() {
                                 swipe = true;
                               });
@@ -3637,6 +3637,29 @@ class _BondState extends State<Bond> {
                     ? AnimatedTextKit(
                         animatedTexts: [
                           ColorizeAnimatedText(
+                            '',
+                            textStyle: TextStyle(fontSize: 14),
+                            colors: [
+                              Colors.lightBlueAccent,
+                              const Color.fromARGB(255, 3, 64, 92)
+                            ],
+                          ),
+                        ],
+                        repeatForever: true,
+                        onNext: (p0, p1) {
+                          Platform.isIOS
+                              ? controller.animateTo(
+                                  controller.position.maxScrollExtent + 100,
+                                  duration: Duration(seconds: 33),
+                                  curve: Curves.linear)
+                              : null;
+                        },
+                      )
+                    : SizedBox(),
+                _counter > 0
+                    ? AnimatedTextKit(
+                        animatedTexts: [
+                          ColorizeAnimatedText(
                             'اسحب يمينا او يسارا او انقر هنا للانتقال الى الآية السابقة',
                             textStyle: TextStyle(fontSize: 14),
                             colors: [
@@ -3646,6 +3669,13 @@ class _BondState extends State<Bond> {
                           ),
                         ],
                         repeatForever: true,
+                        //                       onNext: (p0, p1) {
+
+                        // Platform.isIOS?controller.animateTo(
+                        //                                     controller.position.maxScrollExtent + 300,
+                        //                                     duration: Duration(seconds: 33),
+                        //                                     curve: Curves.linear):null;
+                        //                       },
                         onTap: () {
                           setState(() {
                             swipe = true;
@@ -3683,6 +3713,7 @@ class _BondState extends State<Bond> {
                                 ? controller.position.maxScrollExtent
                                 : controller.position.maxScrollExtent;
                             //-300;
+
                             if (end != controller.position.pixels) {
                               //   controller.jumpTo(0);
                               Platform.isAndroid
