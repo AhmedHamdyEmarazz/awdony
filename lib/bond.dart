@@ -3657,11 +3657,15 @@ class _BondState extends State<Bond> {
                       )
                     : SizedBox(),
                 _counter > 0
-                    ? AnimatedTextKit(
+                    ? Center(
+                        child: AnimatedTextKit(
                         animatedTexts: [
                           ColorizeAnimatedText(
                             'اسحب يمينا او يسارا او انقر هنا للانتقال الى الآية السابقة',
-                            textStyle: TextStyle(fontSize: 14),
+                            textStyle: TextStyle(
+                              fontSize: 14,
+                            ),
+                            textAlign: TextAlign.center,
                             colors: [
                               Colors.lightBlueAccent,
                               const Color.fromARGB(255, 3, 64, 92)
@@ -3682,7 +3686,7 @@ class _BondState extends State<Bond> {
                           });
                           prev(aya!, controller, suraname);
                         },
-                      )
+                      ))
                     : SizedBox(),
                 _counter > 0
                     ? AnimatedTextKit(
