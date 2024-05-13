@@ -3777,7 +3777,8 @@ class _BondState extends State<Bond> {
                               ? 'انقر لاظهار اية'
                               : ' انقر لتغيير الاية بشكل عشوائي',
                           style: TextStyle(
-                              fontSize: 15, color: Color.fromARGB(59, 0, 0, 0)),
+                              fontSize: 15,
+                              color: Color.fromARGB(108, 0, 0, 0)),
                         )),
                   ],
                 ),
