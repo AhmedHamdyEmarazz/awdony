@@ -3636,6 +3636,27 @@ class _BondState extends State<Bond> {
                 _counter > 0
                     ? AnimatedTextKit(
                         animatedTexts: [
+                          ColorizeAnimatedText(
+                            'اسحب يمينا او يسارا او انقر هنا للانتقال الى الآية السابقة',
+                            textStyle: TextStyle(fontSize: 14),
+                            colors: [
+                              Colors.lightBlueAccent,
+                              const Color.fromARGB(255, 3, 64, 92)
+                            ],
+                          ),
+                        ],
+                        repeatForever: true,
+                        onTap: () {
+                          setState(() {
+                            swipe = true;
+                          });
+                          prev(aya!, controller, suraname);
+                        },
+                      )
+                    : SizedBox(),
+                _counter > 0
+                    ? AnimatedTextKit(
+                        animatedTexts: [
                             ColorizeAnimatedText(
                               '<------------->',
                               textStyle: TextStyle(fontSize: 14),
@@ -3648,10 +3669,9 @@ class _BondState extends State<Bond> {
                         repeatForever: true,
                         onTap: () {
                           setState(() {
-                            showpress = true;
-                            switchh = false;
+                            swipe = true;
                           });
-                          launchUrl((Uri.parse(aya_view!)));
+                          prev(aya!, controller, suraname);
                         },
                         onNext: (p0, p1) {
                           setState(() {
@@ -3695,21 +3715,6 @@ class _BondState extends State<Bond> {
                             });
                           }
                         })
-                    : SizedBox(),
-                _counter > 0
-                    ? AnimatedTextKit(
-                        animatedTexts: [
-                          ColorizeAnimatedText(
-                            'اسحب يمينا او يسارا للانتقال الى الآية السابقة',
-                            textStyle: TextStyle(fontSize: 14),
-                            colors: [
-                              Colors.lightBlueAccent,
-                              const Color.fromARGB(255, 3, 64, 92)
-                            ],
-                          )
-                        ],
-                        repeatForever: true,
-                      )
                     : SizedBox(),
                 Stack(
                   // direction: Axis.vertical,
