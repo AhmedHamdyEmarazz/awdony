@@ -3598,6 +3598,12 @@ class _BondState extends State<Bond> {
                     height: heightx * 0.45,
                     child: Center(
                         child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                showpress = true;
+                              });
+                              launchUrl((Uri.parse(aya_view!)));
+                            },
                             onHorizontalDragStart: (details) {
                               setState(() {
                                 swipe = true;
