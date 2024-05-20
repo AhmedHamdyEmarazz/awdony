@@ -3775,17 +3775,24 @@ class _BondState extends State<Bond> {
                         color: Colors.lightBlue,
                       ),
                     )),
-                    Container(
-                        alignment: Alignment.center,
-                        height: appbarheight * 0.7,
-                        child: Text(
-                          aya! == ''
-                              ? 'انقر لاظهار اية'
-                              : ' انقر لتغيير الاية بشكل عشوائي',
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color.fromARGB(108, 0, 0, 0)),
-                        )),
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _showstatic = true;
+                          });
+                          incrementCounterx();
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            height: appbarheight * 0.7,
+                            child: Text(
+                              aya! == ''
+                                  ? 'انقر لاظهار اية'
+                                  : ' انقر لتغيير الاية بشكل عشوائي',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: Color.fromARGB(108, 0, 0, 0)),
+                            ))),
                   ],
                 ),
                 SizedBox(
