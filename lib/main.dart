@@ -3,14 +3,16 @@ import 'package:flutter/services.dart';
 import 'package:random_quraan/listSuras.dart';
 import 'package:random_quraan/writing2.dart';
 import 'package:random_quraan/writining.dart';
-import 'package:wakelock/wakelock.dart';
+// import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'ayas.dart';
 import 'bond.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Wakelock.enable();
+  // Wakelock.enable();
+  WakelockPlus.enable();
   runApp(const MyApp());
 }
 
@@ -33,7 +35,7 @@ class _MyAppState extends State<MyApp> {
     var i;
     var x;
     var y;
-
+    var z;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -46,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           ListSuras.routeName: (ctx) => ListSuras(),
           Writing.routeName: (ctx) => Writing(i),
           Writing2.routeName: (ctx) => Writing2(x),
-          ayas.routeName: (ctx) => ayas(y),
+          ayas.routeName: (ctx) => ayas(y, z),
         });
   }
 }

@@ -5,18 +5,22 @@ import 'package:flutter/material.dart';
 import 'package:random_quraan/drawer.dart';
 import 'package:random_quraan/surasx.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ayas extends StatefulWidget {
   static const routeName = '/ayas';
   final int indx;
-  ayas(this.indx);
+  final int indxx;
+  ayas(this.indx, this.indxx);
   @override
   _ayasState createState() => _ayasState();
 }
 
 class _ayasState extends State<ayas> {
   bool _showstatic = false;
+  int index = 1000;
+  int indexxx = 1000;
   int next = 0;
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemScrollController itemScrollController2 = ItemScrollController();
@@ -46,6 +50,8 @@ class _ayasState extends State<ayas> {
     final appbarheight = kToolbarHeight;
     final heightx = size.height - appbarheight;
     int i = allquraan[widget.indx].values.first!.length;
+    //TODO final k = allquraan[widget.indx].values.first![0];
+
     //  print(i);
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -146,7 +152,7 @@ class _ayasState extends State<ayas> {
                   scrollOffsetListener: scrollOffsetListener,
                   itemPositionsListener: itemPositionsListener,
                   itemCount: i,
-                  //       initialScrollIndex: 0, //widget.indx,
+                  initialScrollIndex: widget.indxx, //widget.indx,
                   itemBuilder: (ctx, indexx) => Column(children: [
 //  highlight &&
 //                           indexx ==
@@ -158,38 +164,40 @@ class _ayasState extends State<ayas> {
 //                                           .values
 //                                           .first!
 //                                           .toList()[indexx])
-//                       ? AnimatedTextKit(
-//                           animatedTexts: [
-//                             ColorizeAnimatedText(
-//                                 '${allquraan[widget.indx].values.first!.toList()[indexx].toString()}',
-//                                 colors: [
-//                                   Colors.lightBlueAccent,
-//                                   const Color.fromARGB(255, 3, 64, 92)
-//                                 ],
-//                                 textStyle: TextStyle(
-//                                     fontStyle: FontStyle.italic,
-//                                     fontFamily: 'Tajawal',
-//                                     fontSize: 30),
-//                                 textAlign: TextAlign.center,
-//                                 speed: Duration(milliseconds: 200))
-//                           ],
-//                           repeatForever: true,
-//                           onNext: (p0, p1) {
-//                             setState(() {
-//                               //  highlight = false;
-//                             });
-//                           },
-//                           onTap: () {
-//                             print(indexx);
-//                             print('https://surahquran.com/aya_view.php?sora=${[
-//                               widget.indx + 1
-//                             ]}&aya=${((allquraan[widget.indx].values.first!.indexWhere((element) => element == allquraan[widget.indx].values.first![indexx])) + 1)}');
-//                             print(
-//                                 '${allquraan[widget.indx].values.first!.indexWhere((element) => element == allquraan[widget.indx].values.first!.toList()[indexx]) + 1} xxx');
-//                             launchUrl((Uri.parse(
-//                                 'https://surahquran.com/aya_view.php?sora=${widget.indx + 1}&aya=${((allquraan[widget.indx].values.first!.indexWhere((element) => element == allquraan[widget.indx].values.first![indexx])) + 1)}')));
-//                           },
-//                         )
+                        //  ?
+                        AnimatedTextKit(
+                          animatedTexts: [
+                            ColorizeAnimatedText('',
+                                colors: [
+                                  Colors.lightBlueAccent,
+                                  const Color.fromARGB(255, 3, 64, 92)
+                                ],
+                                textStyle: TextStyle(
+                                    fontStyle: FontStyle.italic,
+                                    fontFamily: 'Tajawal',
+                                    fontSize: 3),
+                                textAlign: TextAlign.center,
+                                speed: Duration(milliseconds: 200))
+                          ],
+                          repeatForever: true,
+                          onNext: (p0, p1) async {
+                            final SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            setState(() {
+                              prefs.setInt("widget.indx", widget.indx);
+                              index = prefs.getInt('widget.indx')!;
+                              indexx <= 0
+                                  ? null
+                                  : {
+                                      prefs.setInt("indexx", indexx),
+                                      indexxx = prefs.getInt('indexx')!
+                                    };
+                              print(
+                                  '${prefs.getInt('indexx')!} hahahahaahahahahahahahahaah');
+                            });
+                          },
+                          onTap: () async {},
+                        ),
                         //     :
 
                         ListTile(
@@ -201,6 +209,7 @@ class _ayasState extends State<ayas> {
                           title: Center(
                             child: Text(
                               '${allquraan[widget.indx].values.first!.toList()[indexx].toString()}',
+//TODO: in a stable animated text put on its on next function the following : 'indexx and widget.index and save them on sharedprefrences'
                               style: TextStyle(
                                   fontStyle: FontStyle.italic,
                                   fontWeight: FontWeight.normal,
@@ -244,7 +253,7 @@ class _ayasState extends State<ayas> {
                             setState(() {
                               highlight = true;
                             });
-                            print(indexx);
+                            //   print(indexx);
                             print(allquraan[widget.indx]
                                 .values
                                 .first!

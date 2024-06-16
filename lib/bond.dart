@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:wakelock/wakelock.dart';
+
+// import 'package:wakelock/wakelock.dart';
 
 import 'drawer.dart';
 import 'suras.dart';
@@ -3429,7 +3430,7 @@ class _BondState extends State<Bond> {
   }
 
   currentAya(String currentaya, ScrollController controller, suranamee) {
-    Wakelock.enable();
+    // Wakelock.enable();
     setState(() {
       scrollend = false;
       _counterx++;
@@ -3481,7 +3482,7 @@ class _BondState extends State<Bond> {
   prev(String currentaya, ScrollController controller, suranamee) {
     print(algathya!.last);
 
-    Wakelock.enable();
+    // Wakelock.enable();
     setState(() {
       scrollend = false;
       _counterx++;

@@ -131,7 +131,7 @@ class _WritingState extends State<Writing> {
                           textAlign: TextAlign.center,
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (ctx) => ayas(index)));
+                                builder: (ctx) => ayas(index, 0)));
                           },
                         )),
                     Center(
@@ -181,9 +181,45 @@ class _WritingState extends State<Writing> {
                                       //     .itemPositions.value.first.index);
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
-                                              builder: (ctx) => ayas(index)));
+                                              builder: (ctx) =>
+                                                  ayas(index, 0)));
                                     },
                                   ),
+
+//todo
+
+                                  // SizedBox(
+                                  //   height: 500,
+                                  //   child: ScrollablePositionedList.builder(
+                                  //     // itemScrollController: itemScrollController,
+                                  //     // scrollOffsetController:
+                                  //     //     scrollOffsetController,
+                                  //     // scrollOffsetListener: scrollOffsetListener,
+                                  //     // itemPositionsListener:
+                                  //     //     itemPositionsListener,
+                                  //     itemCount:
+                                  //         allquraan[index].values.first!.length,
+                                  //     // initialScrollIndex: widget.indx,
+                                  //     itemBuilder: (ctx, indexz) =>
+                                  //         SelectableText(
+                                  //       '${(allquraan[index].values.first!.toString().split(allquraan[index].values.first!.first)[indexz])}',
+                                  //       style: TextStyle(
+                                  //           fontStyle: FontStyle.italic,
+                                  //           fontFamily: 'Tajawal',
+                                  //           fontSize: 30),
+                                  //       textAlign: TextAlign.center,
+                                  //       onTap: () {
+                                  //         Navigator.of(context).push(
+                                  //             MaterialPageRoute(
+                                  //                 builder: (ctx) =>
+                                  //                     ayas(index, 0)));
+                                  //       },
+                                  //     ),
+                                  //   ),
+                                  // ),
+
+//todo
+
                                   SelectableText(
                                     '${(allquraan[index].values.first!.toString().split(allquraan[index].values.first!.first).last)}',
                                     style: TextStyle(
@@ -194,7 +230,8 @@ class _WritingState extends State<Writing> {
                                     onTap: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
-                                              builder: (ctx) => ayas(index)));
+                                              builder: (ctx) =>
+                                                  ayas(index, 0)));
                                     },
                                   ),
                                 ])),

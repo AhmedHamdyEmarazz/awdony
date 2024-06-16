@@ -128,8 +128,8 @@ class _WritingwithayasState extends State<Writingwithayas> {
                       padding: EdgeInsets.fromLTRB(
                           size.width * 0.02, 3, size.width * 0.02, 3),
                       child: Center(
-                        child:
-                            SizedBox(height: heightx * 0.8, child: ayas(index)),
+                        child: SizedBox(
+                            height: heightx * 0.8, child: ayas(index, 0)),
                       ),
                       // Divider()
                     ))
